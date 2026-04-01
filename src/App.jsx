@@ -2,9 +2,9 @@ import ProjectsSidebar from "./components/ProjectsSidebar";
 
 function App() {
   return (
-    <>
-      <ProjectsSidebar />    
-    </>
+    <main>
+      <ProjectsSidebar className='h-screen' my-8 />    
+    </main>
   );
 }
 
