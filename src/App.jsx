@@ -8,7 +8,7 @@ import SelectedProject from "./components/SelectedProject";
 function App() { 
   const [projectsState, serProjectsState] = useState({     
     selectedProjectId: undefined,
-    projects: []
+    projects: [],
   });  
 
 function handleSelectedProject(id) {
@@ -57,9 +57,23 @@ function handleAddProject (projectDate) {
     });
   } 
 
+function handleDeleteProject(id) { 
+    serProjectsState((prevState) => {
+      return { 
+        ...prevState, 
+        selectedProjectId: undefined,
+         projects: prevState.projects.filter((projects) => projects.id  !== prevState.selectedProjectId
+       ), 
+      };
+    });
+  
+}
+
+
+  
 
   const selectedProjectId = projectsState.projects.find(project =>  project.id === projectsState.selectedProjectId); 
-  let content = <SelectedProject project={selectedProjectId} />;  
+  let content = <SelectedProject project={selectedProjectId} onDelete={handleDeleteProject} />;  
 
   if (projectsState.selectedProjectId === null) {
     content =  <NewProject onAdd={handleAddProject} onCancel={handleAddProject} />
